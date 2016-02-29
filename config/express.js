@@ -1,7 +1,9 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var routeHome = require('.././routes/home');
 var routeAuth = require('.././routes/authentication');
 var routeMenuPrinc = require('.././routes/MenuPrincipal');
+var routeAlmoxarifado = require('.././routes/almoxarifado');
 var path = require('path');
 var logger = require('morgan');
 var load = require('express-load');
@@ -10,7 +12,6 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
 var config = require('.././config_connection');
-var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
@@ -49,7 +50,7 @@ mongoose.connect(config.mongoURI[app.settings.env], function(err, res) {
 
 function configureMiddlewares(app) {
   app.use(logger('dev'));
-  app.use(cookieParser());
+  app.use(cookieParser('dsApp'));
   app.use(session({
    secret: 'is this secret',
    resave: true,
@@ -59,7 +60,7 @@ function configureMiddlewares(app) {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(methodOverride('_method'));
   app.use(express.static(path.join(__dirname, '..', 'public')));
-  app.use(flash());
+  //app.use(flash());
   app.use(passport.initialize());
   app.use(passport.session());
   
@@ -104,6 +105,8 @@ function setRoutes(app) {
   app.post('/login', routeAuth);
   app.get('/logout', routeAuth);
   app.get('/menu-principal', routeMenuPrinc);
+  app.get('/almoxarifado_cadastrarMaterial', routeAlmoxarifado);
+  app.post('/cadastrar_material', routeAlmoxarifado);
 }
 
 

@@ -6,12 +6,3 @@ var router = require('express').Router();
 
 
 module.exports = router;
-/*module.exports = function(app) {
-    var AuthCtrl = app.controllers.authentication;
-    
-    app.post('/login', AuthCtrl.login);
-    //app.get('/logout', AuthenticationCtrl.logout);    
-}
-*/
-
-

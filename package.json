@@ -1,5 +1,5 @@
 {
-  "name": "dsapptest01",
+  "name": "dsApp",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,6 +10,7 @@
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "express-load": "^1.1.15",
+    "express-passport-logout": "^0.1.0",
     "express-session": "^1.13.0",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.3",
