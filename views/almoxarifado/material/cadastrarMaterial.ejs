@@ -15,7 +15,7 @@
     <script src='/javascripts/bootstrap.min.js'></script>
 
     <style>
-     #wrapper { width: 400px; margin-left: 20px;}
+     #wrapper { width: 400px; position: center;}
      footer { text-align: center; margin-top: 530px; }
      footer small { font-size: 30px;}
     </style>
@@ -39,7 +39,7 @@
 <form class="form-horizontal" action="/cadastrar_material" method="POST">
 
   <fieldset>
-    <legend>Material - Cadastro</legend>
+    <legend>Cadastrar Material</legend>
     <div class="form-group">
       <label for="inputNome" class="col-lg-2 control-label">Nome</label>
       <div class="col-lg-10">
@@ -95,7 +95,9 @@
   </fieldset>
 </form>
  
- <label><%= mensagem %></label>
+ <label>
+    <h3><%= mensagem %></h3>
+ </label>
 
 </div>
 

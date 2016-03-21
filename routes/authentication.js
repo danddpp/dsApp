@@ -8,7 +8,6 @@ var testAuth = require('.././middlewares/testFieldsLogin');
 
 router.post('/login', testAuth, passport.authenticate('local'),
     function(req, res, next) {
-    	
         res.redirect('/menu-principal');
 });
 
@@ -16,8 +15,6 @@ router.get('/logout', function(req, res, next) {
         req.logout();
         req.session.destroy(function (err) {
           if (err) { return next(err); }
-          // The response should indicate that the user is no longer authenticated.
-          console.log(req.isAuthenticated());
           res.redirect('/');
         });
 });

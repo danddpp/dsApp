@@ -1,4 +1,5 @@
 var express = require('express');
+var http = require('http');
 var mongoose = require('mongoose');
 var routeHome = require('.././routes/home');
 var routeAuth = require('.././routes/authentication');
@@ -105,14 +106,22 @@ function setRoutes(app) {
   app.post('/login', routeAuth);
   app.get('/logout', routeAuth);
   app.get('/menu-principal', routeMenuPrinc);
+
+  /*routes almoxarifado*/
   app.get('/almoxarifado_cadastrarMaterial', routeAlmoxarifado);
   app.post('/cadastrar_material', routeAlmoxarifado);
+  app.get('/almoxarifado_consultarMaterial', routeAlmoxarifado);
+  app.post('/pesquisar_material', routeAlmoxarifado);
+  app.get('/editar_material/:id', routeAlmoxarifado);
+  app.put('/alterar_material/:id', routeAlmoxarifado);
+  /*routes almoxarifado*/
 }
 
 
 
 function initializeServer(app) {
-  app.listen(3000, function() {
-  	 console.log('Server on in localhost:3000');
+  var server = http.createServer(app);
+  server.listen(3000, function() {
+  	 console.log("dsApp server running on http://localhost:3000");
   });	
 }
