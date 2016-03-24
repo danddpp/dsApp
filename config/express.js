@@ -114,6 +114,7 @@ function setRoutes(app) {
   app.post('/pesquisar_material', routeAlmoxarifado);
   app.get('/editar_material/:id', routeAlmoxarifado);
   app.put('/alterar_material/:id', routeAlmoxarifado);
+  app.get('/excluir_material/:id', routeAlmoxarifado);
   /*routes almoxarifado*/
 }
 
