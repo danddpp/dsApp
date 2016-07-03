@@ -25,39 +25,40 @@ describe('Acessar a home', function() {
 
 
 
-var usuario = require('../models/Usuario');
-var passport = require('passport');
-var testAuth = require('.././middlewares/testFieldsLogin');
-describe('Usuarios', function() {
+var Material = require('../models/Usuario');
+
+describe('tests', function() {
     
     usuario.collection.drop();
     
     beforeEach(function(done) {
-           var newUser = new usuario({
-            username: 'fulano@test',
-            password: '123',
-            nome: 'fulano',
-            roles: ['user']
+            var newMaterial = new Schema({
+              nome: 'banana',
+              unidade: 'kg',
+              estoque_min: '100',
+              status: 'on',
+              observacao: 'Bla bla bla'
+            });
         });
-        newUser.save(function(err) {
+        newMaterial.save(function(err) {
             done();
         });
     });
 
     afterEach(function(done) {
-        usuario.collection.drop();
+        Material.collection.drop();
         done();
     });
 
     
-    it('Deve retornar um usuario em /login', function(done) {
+    it('Deve retornar um material em ', function(done) {
         chai.request(server)  
-        .post('login', testAuth, passport.authenticate('local'))
-        .end(function(err,res) {
+        .post('/login',testAuth)
+        .end(function(err, res) {
            res.should.have.status(200);
-           done();  
-         });
-    });
+           done();
+        });
+    }); 
 
 });
 

@@ -115,7 +115,13 @@ function setRoutes(app) {
   app.get('/editar_material/:id', routeAlmoxarifado);
   app.put('/alterar_material/:id', routeAlmoxarifado);
   app.get('/excluir_material/:id', routeAlmoxarifado);
-  /*routes almoxarifado*/
+  /*** ***/
+  app.get('/almoxarifado_cadastrarEntrada', routeAlmoxarifado);
+  app.post('/pesquisar_materialEntrada', routeAlmoxarifado);
+  app.post('/cadastrar_entrada/:id', routeAlmoxarifado);
+  app.get('/almoxarifado_consultarEstoqueAtual', routeAlmoxarifado);
+  app.get('/almoxarifado_cadastrarRequisicao', routeAlmoxarifado);
+  app.post('/pesquisar_materialRequisicao', routeAlmoxarifado);
 }
 
 

@@ -10,8 +10,9 @@
      ul li { display: inline; margin-top: 17px; }
      li button, input { margin-top: 10px; }
     </style>
+    <script src="javascripts/app.js"></script>
 </head>
-<body ng-app="ModuleLogin">
+<body ng-app="ModuleMaterial">
 
 <div>
  <nav class="navbar navbar-default">
@@ -43,5 +44,9 @@
  </nav>
 </div>
    
+ <div ng-controller="requisicaoCtrl">
+   <p ng-model="teste">{{teste}}</p>
+ </div>
+
 </body>
 </html>

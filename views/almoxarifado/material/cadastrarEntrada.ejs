@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link href='/stylesheets/bootstrap.min.css' rel='stylesheet'/>
+    <link href='/stylesheets/submenu.css' rel='stylesheet'>
+    <script src='/javascripts/jquery-1.11.3.min.js'></script>
+    <script src='/javascripts/bootstrap.min.js'></script>
+
+    <style>
+     #wrapper { width: 980px; position: center;}
+     #wrapper2 { width: 600px; position: center;}
+     #search input { display: block; float: left; width: 500px; }
+     #search button { display: block; float: right; margin-right: 200px; }
+     #dt-ent input { width: 170px; }
+     #num-nf input { width: 170px; }
+     #dt-emis input { width: 170px; }
+     #qtde input { width: 170px; }
+     #bt-cadastrar button { display: block; float: right; position: right; }
+    </style>
+
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+     <header>    
+      <% include ../../navBarMenuPrincipal %> 
+     </header> 
+
+   
+<div id="wrapper" class="container"> 
+     
+  <form class="form-horizontal" action="/pesquisar_materialEntrada" method="POST">
+
+    <fieldset> 
+    <legend>Cadastrar entrada de material</legend>  
+        <div class="form-group">
+         <label for="inputNome" class="col-lg-2 control-label">Nome</label>
+         <div id="search" class="col-lg-10">
+          <input type="text" class="form-control" id="inputNome" placeholder="Digite o nome do material" name="material[nome]">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+        </div>  
+   </fieldset>
+  </form>
+  </div>
+  
+
+<div id="wrapper2" class="container">  
+<% if(materiais !== null) {  
+      materiais.forEach(function(material) { %>
+
+<form class="form-horizontal" action="/cadastrar_entrada/<%= material.id %>" method="POST">
+
+
+  <fieldset>
+    <div class="form-group">
+      <label><h4>Item: <%- material.nome %></h4></label>&nbsp;&nbsp;&nbsp;&nbsp;
+      <label><h4>Unidade: <%- material.unidade %></h4></label>
+    </div>
+
+
+     <div class="form-group">
+       <label for="inputDataEntrada" class="col-lg-2 control-label">Data do cadastro</label>
+       <div id="dt-ent" class="col-lg-10">
+         <input type="date" class="form-control" name="entrada[dataEntrada]">
+       </div>
+     </div>
+
+    <div class="form-group">
+      <label for="inputNF" class="col-lg-2 control-label">Nº Nota fiscal</label>
+      <div id="num-nf" class="col-lg-10">
+        <input type="text" class="form-control" id="inputNF" placeholder="Nº Nota Fiscal" name="entrada[num_nf]">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputdtEmissaoNf" class="col-lg-2 control-label">Data de emissão NF</label>
+      <div id="dt-emis" class="col-lg-10">
+        <input type="date" class="form-control" id="inputDtEmissao" name="entrada[dataEmissaoNf]">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="inputFornecedor" class="col-lg-2 control-label">Razão Social</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputFornecedor" placeholder="Razão Social" name="entrada[fornecedor]">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputQtde" class="col-lg-2 control-label">Quantidade</label>
+      <div id="qtde" class="col-lg-10">
+        <input type="text" class="form-control" id="inputQtde" placeholder="Digite a qtde" name="entrada[qtde]">
+      </div>
+    </div>
+
+    <div id="bt-cadastrar" class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <!--<button type="reset" class="btn btn-default">Cancel</button>-->
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
+</div>
+<% }) 
+    } %>
+
+    <label>
+      <h3><%= mensagem %></h3>
+    </label>
+
+<script>
+   document.getElementById("data").innerHTML = setDate();
+   
+   function setDate() {
+      var data = new Date();
+      var dia = data.getDate();
+      var mes = data.getMonth() + 1;
+      mes = verificaMes(mes);
+      var ano = data.getFullYear();
+      return dia + "/" + mes + "/" + ano;
+   }
+
+   function verificaMes(mes) {
+     if(mes < 10) {
+        mes = "0" + mes;
+     }
+     return mes;
+   }
+</script>    
+  </body>
+</html>
